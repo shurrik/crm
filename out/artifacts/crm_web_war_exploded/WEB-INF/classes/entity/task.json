@@ -1,0 +1,60 @@
+/*字段说明：1属性类型;2表字段长度，为0表示不需要长度;3是否主键;4允许为空;5注释*/
+[
+  {
+    "Schedule#计划":
+    {
+      "cron":"String#100#0#0#时间表达式",
+      "cronDesc":"String#100#0#0#定时说明",
+      "tplId":"String#100#0#0#模板ID",
+      "tplName":"String#100#0#0#模板",
+      "status":"String#20#0#0#状态",
+      "createrId":"String#64#0#1#创建人ID",
+      "createrName":"String#100#0#1#创建人名",
+      "updaterId":"String#64#0#1#更新人ID",
+      "updaterName":"String#100#0#1#更新人名",
+      "createDate":"Date#0#0#0#创建时间",
+      "updateDate":"Date#0#0#0#更新时间"
+    }
+  },
+  {
+    "Task#任务":
+    {
+      "scheId":"String#100#0#0#计划ID",
+      "tplId":"String#100#0#0#模板ID",
+      "tplName":"String#100#0#0#模板",
+      "clazz":"String#100#0#0#模板类",
+      "agentClazz":"String#100#0#0#代理模板类",
+      "param":"String#1000#0#0#参数",
+      "progress":"Integer#0#0#0#进度",
+      "status":"String#20#0#0#状态",
+      "startDate":"Date#0#0#0#开始时间",
+      "finishDate":"Date#0#0#0#完成时间",
+      "createrId":"String#64#0#1#创建人ID",
+      "createrName":"String#100#0#1#创建人名",
+      "updaterId":"String#64#0#1#更新人ID",
+      "updaterName":"String#100#0#1#更新人名",
+      "createDate":"Date#0#0#0#创建时间",
+      "updateDate":"Date#0#0#0#更新时间"
+    }
+  },
+  {
+    "TaskLog#任务日志":
+    {
+      "taskId":"String#100#0#0#任务ID",
+      "status":"String#20#0#0#状态",
+      "createDate":"Date#0#0#0#创建时间"
+    }
+  },
+  {
+    "TaskMsg#任务消息":
+    {
+      "taskId":"String#100#0#0#任务ID",
+      "code":"String#20#0#0#状态",
+      "msg":"String#1000#0#0#内容",
+      "createDate":"Date#0#0#0#创建时间"
+    }
+  },
+]
+
+
+
