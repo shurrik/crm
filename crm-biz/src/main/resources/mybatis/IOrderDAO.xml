@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.shurrik.crm.dao.IOrderDAO">
+
+    <sql id="Base_Column_List">
+      id,
+	  buyer_id buyerId,
+	  nick_name nickName,
+	  real_name realName,
+	  receiver receiver,
+	  mobile mobile,
+	  address address,
+	  pay_mode payMode,
+	  post_type postType,
+	  post_no postNo,
+	  status status,
+	  post_free postFree,
+	  goods_cost goodsCost,
+	  goods_price goodsPrice,
+	  post_price postPrice,
+	  sell_amount sellAmount,
+	  cost_amount costAmount,
+	  profit_amount profitAmount,
+	  creater_id createrId,
+	  creater_name createrName,
+	  updater_id updaterId,
+	  updater_name updaterName,
+	  create_date createDate,
+	  update_date updateDate
+    </sql>
+    
+    <sql id="Query_condition">
+      <trim prefix="WHERE" prefixOverrides="AND | OR">
+              <if test="condition.buyerId!=null">
+			  	AND buyer_id Like '%${condition.buyerId}%'
+			  </if>
+              <if test="condition.nickName!=null">
+			  	AND nick_name Like '%${condition.nickName}%'
+			  </if>
+              <if test="condition.realName!=null">
+			  	AND real_name Like '%${condition.realName}%'
+			  </if>
+              <if test="condition.receiver!=null">
+			  	AND receiver Like '%${condition.receiver}%'
+			  </if>
+              <if test="condition.mobile!=null">
+			  	AND mobile Like '%${condition.mobile}%'
+			  </if>
+              <if test="condition.address!=null">
+			  	AND address Like '%${condition.address}%'
+			  </if>
+              <if test="condition.payMode!=null">
+			  	AND pay_mode Like '%${condition.payMode}%'
+			  </if>
+              <if test="condition.postType!=null">
+			  	AND post_type Like '%${condition.postType}%'
+			  </if>
+              <if test="condition.postNo!=null">
+			  	AND post_no Like '%${condition.postNo}%'
+			  </if>
+              <if test="condition.status!=null">
+			  	AND status Like '%${condition.status}%'
+			  </if>
+              <if test="condition.postFree!=null">
+			  	AND post_free Like '%${condition.postFree}%'
+			  </if>
+              <if test="condition.goodsCost!=null">
+			  	AND goods_cost Like '%${condition.goodsCost}%'
+			  </if>
+              <if test="condition.goodsPrice!=null">
+			  	AND goods_price Like '%${condition.goodsPrice}%'
+			  </if>
+              <if test="condition.postPrice!=null">
+			  	AND post_price Like '%${condition.postPrice}%'
+			  </if>
+              <if test="condition.sellAmount!=null">
+			  	AND sell_amount Like '%${condition.sellAmount}%'
+			  </if>
+              <if test="condition.costAmount!=null">
+			  	AND cost_amount Like '%${condition.costAmount}%'
+			  </if>
+              <if test="condition.profitAmount!=null">
+			  	AND profit_amount Like '%${condition.profitAmount}%'
+			  </if>
+              <if test="condition.createrId!=null">
+			  	AND creater_id Like '%${condition.createrId}%'
+			  </if>
+              <if test="condition.createrName!=null">
+			  	AND creater_name Like '%${condition.createrName}%'
+			  </if>
+              <if test="condition.updaterId!=null">
+			  	AND updater_id Like '%${condition.updaterId}%'
+			  </if>
+              <if test="condition.updaterName!=null">
+			  	AND updater_name Like '%${condition.updaterName}%'
+			  </if>
+              <if test="condition.createDate!=null">
+			  	AND create_date Like '%${condition.createDate}%'
+			  </if>
+              <if test="condition.updateDate!=null">
+			  	AND update_date Like '%${condition.updateDate}%'
+			  </if>
+        </trim>
+    </sql>
+    
+    <insert id="insert" parameterType="Order">
+        INSERT INTO t_crm_order (
+	        id,
+		    buyer_id,
+		    nick_name,
+		    real_name,
+		    receiver,
+		    mobile,
+		    address,
+		    pay_mode,
+		    post_type,
+		    post_no,
+		    status,
+		    post_free,
+		    goods_cost,
+		    goods_price,
+		    post_price,
+		    sell_amount,
+		    cost_amount,
+		    profit_amount,
+		    creater_id,
+		    creater_name,
+		    updater_id,
+		    updater_name,
+		    create_date,
+		    update_date
+        ) VALUES (
+         	#{id},
+       		#{buyerId},
+       		#{nickName},
+       		#{realName},
+       		#{receiver},
+       		#{mobile},
+       		#{address},
+       		#{payMode},
+       		#{postType},
+       		#{postNo},
+       		#{status},
+       		#{postFree},
+       		#{goodsCost},
+       		#{goodsPrice},
+       		#{postPrice},
+       		#{sellAmount},
+       		#{costAmount},
+       		#{profitAmount},
+       		#{createrId},
+       		#{createrName},
+       		#{updaterId},
+       		#{updaterName},
+       		sysdate(),
+       		sysdate()
+        )
+    </insert>
+
+    <!-- 更新 -->
+   	<update id="update" parameterType="Order">
+        UPDATE t_crm_order
+        <trim prefix="SET" suffixOverrides=",">
+          <if test="buyerId!=null">
+           buyer_id=#{buyerId},
+          </if>
+          <if test="nickName!=null">
+           nick_name=#{nickName},
+          </if>
+          <if test="realName!=null">
+           real_name=#{realName},
+          </if>
+          <if test="receiver!=null">
+           receiver=#{receiver},
+          </if>
+          <if test="mobile!=null">
+           mobile=#{mobile},
+          </if>
+          <if test="address!=null">
+           address=#{address},
+          </if>
+          <if test="payMode!=null">
+           pay_mode=#{payMode},
+          </if>
+          <if test="postType!=null">
+           post_type=#{postType},
+          </if>
+          <if test="postNo!=null">
+           post_no=#{postNo},
+          </if>
+          <if test="status!=null">
+           status=#{status},
+          </if>
+          <if test="postFree!=null">
+           post_free=#{postFree},
+          </if>
+          <if test="goodsCost!=null">
+           goods_cost=#{goodsCost},
+          </if>
+          <if test="goodsPrice!=null">
+           goods_price=#{goodsPrice},
+          </if>
+          <if test="postPrice!=null">
+           post_price=#{postPrice},
+          </if>
+          <if test="sellAmount!=null">
+           sell_amount=#{sellAmount},
+          </if>
+          <if test="costAmount!=null">
+           cost_amount=#{costAmount},
+          </if>
+          <if test="profitAmount!=null">
+           profit_amount=#{profitAmount},
+          </if>
+          <if test="createrId!=null">
+           creater_id=#{createrId},
+          </if>
+          <if test="createrName!=null">
+           creater_name=#{createrName},
+          </if>
+          <if test="updaterId!=null">
+           updater_id=#{updaterId},
+          </if>
+          <if test="updaterName!=null">
+           updater_name=#{updaterName},
+          </if>
+          <if test="createDate!=null">
+           create_date=sysdate(),
+          </if>
+          <if test="updateDate!=null">
+           update_date=sysdate(),
+          </if>
+        </trim>
+        WHERE
+        id =#{id}
+    </update>
+
+   	<update id="updateMap">
+        UPDATE t_crm_order
+        <trim prefix="SET" suffixOverrides=",">
+          <if test="map.buyerId!=null">        
+           buyer_id=#{map.buyerId},
+          </if>
+          <if test="map.nickName!=null">        
+           nick_name=#{map.nickName},
+          </if>
+          <if test="map.realName!=null">        
+           real_name=#{map.realName},
+          </if>
+          <if test="map.receiver!=null">        
+           receiver=#{map.receiver},
+          </if>
+          <if test="map.mobile!=null">        
+           mobile=#{map.mobile},
+          </if>
+          <if test="map.address!=null">        
+           address=#{map.address},
+          </if>
+          <if test="map.payMode!=null">        
+           pay_mode=#{map.payMode},
+          </if>
+          <if test="map.postType!=null">        
+           post_type=#{map.postType},
+          </if>
+          <if test="map.postNo!=null">        
+           post_no=#{map.postNo},
+          </if>
+          <if test="map.status!=null">        
+           status=#{map.status},
+          </if>
+          <if test="map.postFree!=null">        
+           post_free=#{map.postFree},
+          </if>
+          <if test="map.goodsCost!=null">        
+           goods_cost=#{map.goodsCost},
+          </if>
+          <if test="map.goodsPrice!=null">        
+           goods_price=#{map.goodsPrice},
+          </if>
+          <if test="map.postPrice!=null">        
+           post_price=#{map.postPrice},
+          </if>
+          <if test="map.sellAmount!=null">        
+           sell_amount=#{map.sellAmount},
+          </if>
+          <if test="map.costAmount!=null">        
+           cost_amount=#{map.costAmount},
+          </if>
+          <if test="map.profitAmount!=null">        
+           profit_amount=#{map.profitAmount},
+          </if>
+          <if test="map.createrId!=null">        
+           creater_id=#{map.createrId},
+          </if>
+          <if test="map.createrName!=null">        
+           creater_name=#{map.createrName},
+          </if>
+          <if test="map.updaterId!=null">        
+           updater_id=#{map.updaterId},
+          </if>
+          <if test="map.updaterName!=null">        
+           updater_name=#{map.updaterName},
+          </if>
+          <if test="map.createDate!=null">        
+           create_date=sysdate(),
+          </if>
+          <if test="map.updateDate!=null">        
+           update_date=sysdate(),
+          </if>
+        </trim>
+        WHERE
+       id = #{ map.id }
+	</update>
+
+
+     <insert id="insertMap" >
+        INSERT INTO t_crm_order (
+             	id,
+			 	buyer_id,
+			 	nick_name,
+			 	real_name,
+			 	receiver,
+			 	mobile,
+			 	address,
+			 	pay_mode,
+			 	post_type,
+			 	post_no,
+			 	status,
+			 	post_free,
+			 	goods_cost,
+			 	goods_price,
+			 	post_price,
+			 	sell_amount,
+			 	cost_amount,
+			 	profit_amount,
+			 	creater_id,
+			 	creater_name,
+			 	updater_id,
+			 	updater_name,
+			 	create_date,
+			 	update_date,
+        ) VALUES (
+              	#{map.id},
+		    	#{map.buyerId},
+		    	#{map.nickName},
+		    	#{map.realName},
+		    	#{map.receiver},
+		    	#{map.mobile},
+		    	#{map.address},
+		    	#{map.payMode},
+		    	#{map.postType},
+		    	#{map.postNo},
+		    	#{map.status},
+		    	#{map.postFree},
+		    	#{map.goodsCost},
+		    	#{map.goodsPrice},
+		    	#{map.postPrice},
+		    	#{map.sellAmount},
+		    	#{map.costAmount},
+		    	#{map.profitAmount},
+		    	#{map.createrId},
+		    	#{map.createrName},
+		    	#{map.updaterId},
+		    	#{map.updaterName},
+		    	sysdate(),
+		    	sysdate(),
+        )
+    </insert>
+
+
+  	<update id="updateNull" parameterType="Order">
+        UPDATE t_crm_order
+        <trim prefix="SET" suffixOverrides=","> 
+			    buyer_id=#{buyerId},
+			    nick_name=#{nickName},
+			    real_name=#{realName},
+			    receiver=#{receiver},
+			    mobile=#{mobile},
+			    address=#{address},
+			    pay_mode=#{payMode},
+			    post_type=#{postType},
+			    post_no=#{postNo},
+			    status=#{status},
+			    post_free=#{postFree},
+			    goods_cost=#{goodsCost},
+			    goods_price=#{goodsPrice},
+			    post_price=#{postPrice},
+			    sell_amount=#{sellAmount},
+			    cost_amount=#{costAmount},
+			    profit_amount=#{profitAmount},
+			    creater_id=#{createrId},
+			    creater_name=#{createrName},
+			    updater_id=#{updaterId},
+			    updater_name=#{updaterName},
+			    create_date=sysdate(),
+			    update_date=sysdate(),
+        </trim>
+        WHERE
+        id =#{id}
+    </update>
+
+   	<delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM t_crm_order
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id=#{id}
+        </trim>
+    </delete>
+
+
+ 	<delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM  t_crm_order 
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="map.id!=null">
+                AND id = #{map.id}
+            </if>				        
+			<if test="map.buyerId!=null">
+				AND buyer_id = #{map.buyerId}
+			</if>				
+			<if test="map.nickName!=null">
+				AND nick_name = #{map.nickName}
+			</if>				
+			<if test="map.realName!=null">
+				AND real_name = #{map.realName}
+			</if>				
+			<if test="map.receiver!=null">
+				AND receiver = #{map.receiver}
+			</if>				
+			<if test="map.mobile!=null">
+				AND mobile = #{map.mobile}
+			</if>				
+			<if test="map.address!=null">
+				AND address = #{map.address}
+			</if>				
+			<if test="map.payMode!=null">
+				AND pay_mode = #{map.payMode}
+			</if>				
+			<if test="map.postType!=null">
+				AND post_type = #{map.postType}
+			</if>				
+			<if test="map.postNo!=null">
+				AND post_no = #{map.postNo}
+			</if>				
+			<if test="map.status!=null">
+				AND status = #{map.status}
+			</if>				
+			<if test="map.postFree!=null">
+				AND post_free = #{map.postFree}
+			</if>				
+			<if test="map.goodsCost!=null">
+				AND goods_cost = #{map.goodsCost}
+			</if>				
+			<if test="map.goodsPrice!=null">
+				AND goods_price = #{map.goodsPrice}
+			</if>				
+			<if test="map.postPrice!=null">
+				AND post_price = #{map.postPrice}
+			</if>				
+			<if test="map.sellAmount!=null">
+				AND sell_amount = #{map.sellAmount}
+			</if>				
+			<if test="map.costAmount!=null">
+				AND cost_amount = #{map.costAmount}
+			</if>				
+			<if test="map.profitAmount!=null">
+				AND profit_amount = #{map.profitAmount}
+			</if>				
+			<if test="map.createrId!=null">
+				AND creater_id = #{map.createrId}
+			</if>				
+			<if test="map.createrName!=null">
+				AND creater_name = #{map.createrName}
+			</if>				
+			<if test="map.updaterId!=null">
+				AND updater_id = #{map.updaterId}
+			</if>				
+			<if test="map.updaterName!=null">
+				AND updater_name = #{map.updaterName}
+			</if>				
+			<if test="map.createDate!=null">
+				AND create_date = sysdate()
+			</if>				
+			<if test="map.updateDate!=null">
+				AND update_date = sysdate()
+			</if>				
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM t_crm_order WHERE
+        ${property}=#{value}
+    </delete>
+
+    <select id="fetch" parameterType="java.lang.Integer" resultType="Order">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_crm_order
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id =#{id}
+        </trim>
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="Order">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_crm_order WHERE
+        ${property}=#{value} 
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="Order">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_crm_order WHERE
+       	${property} =#{value}
+    </select>
+
+    <select id="findAll" resultType="Order">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_crm_order
+    </select>
+
+    <select id="queryPage" resultType="Order">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_crm_order
+        <include refid="Query_condition" />    
+        <if test="condition.sort != null">
+			order by ${condition.sort}
+		</if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="Order">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_crm_order
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="id!=null">
+				AND id like '%#{id}%'
+			</if>
+			<if test="buyerId!=null">
+				AND buyer_id Like '%$ {condition.buyerId}%'
+			</if>
+			<if test="nickName!=null">
+				AND nick_name Like '%$ {condition.nickName}%'
+			</if>
+			<if test="realName!=null">
+				AND real_name Like '%$ {condition.realName}%'
+			</if>
+			<if test="receiver!=null">
+				AND receiver Like '%$ {condition.receiver}%'
+			</if>
+			<if test="mobile!=null">
+				AND mobile Like '%$ {condition.mobile}%'
+			</if>
+			<if test="address!=null">
+				AND address Like '%$ {condition.address}%'
+			</if>
+			<if test="payMode!=null">
+				AND pay_mode Like '%$ {condition.payMode}%'
+			</if>
+			<if test="postType!=null">
+				AND post_type Like '%$ {condition.postType}%'
+			</if>
+			<if test="postNo!=null">
+				AND post_no Like '%$ {condition.postNo}%'
+			</if>
+			<if test="status!=null">
+				AND status Like '%$ {condition.status}%'
+			</if>
+			<if test="postFree!=null">
+				AND post_free Like '%$ {condition.postFree}%'
+			</if>
+			<if test="goodsCost!=null">
+				AND goods_cost Like '%$ {condition.goodsCost}%'
+			</if>
+			<if test="goodsPrice!=null">
+				AND goods_price Like '%$ {condition.goodsPrice}%'
+			</if>
+			<if test="postPrice!=null">
+				AND post_price Like '%$ {condition.postPrice}%'
+			</if>
+			<if test="sellAmount!=null">
+				AND sell_amount Like '%$ {condition.sellAmount}%'
+			</if>
+			<if test="costAmount!=null">
+				AND cost_amount Like '%$ {condition.costAmount}%'
+			</if>
+			<if test="profitAmount!=null">
+				AND profit_amount Like '%$ {condition.profitAmount}%'
+			</if>
+			<if test="createrId!=null">
+				AND creater_id Like '%$ {condition.createrId}%'
+			</if>
+			<if test="createrName!=null">
+				AND creater_name Like '%$ {condition.createrName}%'
+			</if>
+			<if test="updaterId!=null">
+				AND updater_id Like '%$ {condition.updaterId}%'
+			</if>
+			<if test="updaterName!=null">
+				AND updater_name Like '%$ {condition.updaterName}%'
+			</if>
+			<if test="createDate!=null">
+				AND create_date Like '%$ {condition.createDate}%'
+			</if>
+			<if test="updateDate!=null">
+				AND update_date Like '%$ {condition.updateDate}%'
+			</if>
+        </trim>
+    </select>
+
+
+ 	<select id="queryList" parameterType="java.util.Map" resultType="Order">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_crm_order
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="map.id!=null">
+                AND id = #{map.id}
+            </if>
+			<if test="map.buyerId!=null">
+				AND buyer_id = #{map.buyerId}
+			</if>
+			<if test="map.nickName!=null">
+				AND nick_name = #{map.nickName}
+			</if>
+			<if test="map.realName!=null">
+				AND real_name = #{map.realName}
+			</if>
+			<if test="map.receiver!=null">
+				AND receiver = #{map.receiver}
+			</if>
+			<if test="map.mobile!=null">
+				AND mobile = #{map.mobile}
+			</if>
+			<if test="map.address!=null">
+				AND address = #{map.address}
+			</if>
+			<if test="map.payMode!=null">
+				AND pay_mode = #{map.payMode}
+			</if>
+			<if test="map.postType!=null">
+				AND post_type = #{map.postType}
+			</if>
+			<if test="map.postNo!=null">
+				AND post_no = #{map.postNo}
+			</if>
+			<if test="map.status!=null">
+				AND status = #{map.status}
+			</if>
+			<if test="map.postFree!=null">
+				AND post_free = #{map.postFree}
+			</if>
+			<if test="map.goodsCost!=null">
+				AND goods_cost = #{map.goodsCost}
+			</if>
+			<if test="map.goodsPrice!=null">
+				AND goods_price = #{map.goodsPrice}
+			</if>
+			<if test="map.postPrice!=null">
+				AND post_price = #{map.postPrice}
+			</if>
+			<if test="map.sellAmount!=null">
+				AND sell_amount = #{map.sellAmount}
+			</if>
+			<if test="map.costAmount!=null">
+				AND cost_amount = #{map.costAmount}
+			</if>
+			<if test="map.profitAmount!=null">
+				AND profit_amount = #{map.profitAmount}
+			</if>
+			<if test="map.createrId!=null">
+				AND creater_id = #{map.createrId}
+			</if>
+			<if test="map.createrName!=null">
+				AND creater_name = #{map.createrName}
+			</if>
+			<if test="map.updaterId!=null">
+				AND updater_id = #{map.updaterId}
+			</if>
+			<if test="map.updaterName!=null">
+				AND updater_name = #{map.updaterName}
+			</if>
+			<if test="map.createDate!=null">
+				AND create_date = sysdate()
+			</if>
+			<if test="map.updateDate!=null">
+				AND update_date = sysdate()
+			</if>
+        </trim>
+        ORDER BY ${orderBy} ${sortBy}
+    </select>
+
+   	<select id="queryOne" parameterType="java.util.Map" resultType="Order">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM t_crm_order
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="map.id!=null">
+                AND id = #{map.id}
+            </if>
+			<if test="map.buyerId!=null">
+				AND buyer_id = #{map.buyerId}
+			</if>
+			<if test="map.nickName!=null">
+				AND nick_name = #{map.nickName}
+			</if>
+			<if test="map.realName!=null">
+				AND real_name = #{map.realName}
+			</if>
+			<if test="map.receiver!=null">
+				AND receiver = #{map.receiver}
+			</if>
+			<if test="map.mobile!=null">
+				AND mobile = #{map.mobile}
+			</if>
+			<if test="map.address!=null">
+				AND address = #{map.address}
+			</if>
+			<if test="map.payMode!=null">
+				AND pay_mode = #{map.payMode}
+			</if>
+			<if test="map.postType!=null">
+				AND post_type = #{map.postType}
+			</if>
+			<if test="map.postNo!=null">
+				AND post_no = #{map.postNo}
+			</if>
+			<if test="map.status!=null">
+				AND status = #{map.status}
+			</if>
+			<if test="map.postFree!=null">
+				AND post_free = #{map.postFree}
+			</if>
+			<if test="map.goodsCost!=null">
+				AND goods_cost = #{map.goodsCost}
+			</if>
+			<if test="map.goodsPrice!=null">
+				AND goods_price = #{map.goodsPrice}
+			</if>
+			<if test="map.postPrice!=null">
+				AND post_price = #{map.postPrice}
+			</if>
+			<if test="map.sellAmount!=null">
+				AND sell_amount = #{map.sellAmount}
+			</if>
+			<if test="map.costAmount!=null">
+				AND cost_amount = #{map.costAmount}
+			</if>
+			<if test="map.profitAmount!=null">
+				AND profit_amount = #{map.profitAmount}
+			</if>
+			<if test="map.createrId!=null">
+				AND creater_id = #{map.createrId}
+			</if>
+			<if test="map.createrName!=null">
+				AND creater_name = #{map.createrName}
+			</if>
+			<if test="map.updaterId!=null">
+				AND updater_id = #{map.updaterId}
+			</if>
+			<if test="map.updaterName!=null">
+				AND updater_name = #{map.updaterName}
+			</if>
+			<if test="map.createDate!=null">
+				AND create_date = sysdate()
+			</if>
+			<if test="map.updateDate!=null">
+				AND update_date = sysdate()
+			</if>
+        </trim>
+        limit 0,1
+    </select>
+
+  	<select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM t_crm_order
+        <include refid="Query_condition" />
+    </select>
+
+	<select id="selectMaxId" resultType="java.lang.Integer">
+	    SELECT
+	    MAX(id)
+	    FROM t_crm_order
+	</select>
+
+</mapper>
+

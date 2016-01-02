@@ -20,14 +20,8 @@
         </div>
     </form>
 </div>
-<div class="bjui-pageContent">
-<#--    <div class="bjui-headBar">
-        <ul>
-            <li class="left"><button type="button" class="btn-green" data-url="${wwwroot}/admin/roleresource/add" data-toggle="navtab" data-id="form" data-icon="plus">新增</button></li>
-            <li class="left"><button type="button" class="btn-red" data-url="${wwwroot}/admin/roleresource/delete?ids={#bjui-selected}" data-toggle="doajax" data-confirm-msg="确定要删除选中项吗？" data-icon="remove">删除选中行</button></li>
-        </ul>
-    </div>-->
-    <table data-toggle="tablefixed" data-width="100%" data-layout-h="0" data-nowrap="true" data-selected-multi="true">
+<div class="bjui-pageContent tableContent">
+    <table data-toggle="tablefixed" data-width="100%" data-nowrap="true">
         <thead>
             <tr>
 				<th width="30">No.</th>                
@@ -58,6 +52,6 @@
 	        	</tr>
 			</#list>	        	
         </tbody>
-    </table>  
- 	<@p.pagination pageCtx=pageCtx pageParam=pageParam/>
+    </table>
 </div>
+<@p.pagination pageCtx=pageCtx pageParam=pageParam/>
